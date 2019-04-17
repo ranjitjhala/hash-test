@@ -3,6 +3,7 @@
 
 -- module Main (main) where
 
+import System.Environment
 import           Options.Applicative.Simple (simpleVersion)
 import qualified Paths_hash_test as Meta
 import qualified Language.Haskell.TH.Syntax as TH
@@ -13,6 +14,8 @@ import           IVersion
 
 main :: IO ()
 main = do 
-  if not True 
-     then putStrLn $(mySimpleVersion Meta.version) -- Works
-     else putStrLn $(simpleVersion Meta.version)   -- Doesn't work
+  args <- getArgs 
+  let nArgs = read <$> args
+  case nArgs :: [Int] of 
+    0:_ -> putStrLn $(mySimpleVersion Meta.version) -- Works
+    _   -> putStrLn $(simpleVersion Meta.version)   -- Doesn't work
