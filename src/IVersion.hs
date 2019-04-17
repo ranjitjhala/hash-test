@@ -29,21 +29,4 @@ mySimpleVersion version =
            )|]
   where
     gi = $$tGitInfoCwd
-    -- giResult = $$tGitInfoCwd
-
-{- 
-main :: IO ()
-main = putStrLn $(mySimpleVersion Meta.version)
-
-panic :: String -> IO ()
-panic msg = putStrLn panicMsg
-  where panicMsg =
-          concat [ "[panic ", giBranch gi, "@", giHash gi
-                 , " (", giCommitDate gi, ")"
-                 , " (", show (giCommitCount gi), " commits in HEAD)"
-                 , dirty, "] ", msg ]
-        dirty | giDirty gi = " (uncommitted files present)"
-              | otherwise   = ""
-        gi = $$tGitInfoCwd
-
--}
+    -- giResult = $$tGitInfoCwdTry
